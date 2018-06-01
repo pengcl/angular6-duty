@@ -1,20 +1,56 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div id="render-target">
 
+    <div id="container" class="{{menuOpen}}">
+      <section id="menu">
+        <div class="language-toggle">
+          <!--<span class="active">中文</span>-->
+          <a href="#" class="js-toggle-language">英文</a>
+        </div>
+        <div class="btns-group-vertical">
+          <a href="#" class="js-user-menu btn-secondary">
+            <!--<span class="icon-arrow-up"></span>-->
+            <span class="icon-arrow-down"></span>
+            3559996@qq.com
+          </a>
+          <!--<a class="js-logout btn-secondary">退出</a>-->
+        </div>
+        <div class="btns-group">
+          <a href="" class="btn-secondary">登录</a>
+          <a href="" class="btn-secondary">注册</a>
+        </div>
+
+        <div class="list-todos">
+          <a class="js-new-list link-list-new">
+            <span class="icon-plus"></span>添加
+          </a>
+
+          <a href="" title="" class="list-todo">
+            <span class="icon-lock"></span>
+
+            <span class="count-list">12</span>
+
+            不好
+          </a>
+        </div>
+      </section>
+
+      <div class="notifications">
+        <div class="notification">
+          <span class="icon-sync"></span>
+          <div class="meta">
+            <div class="title-notification">
+            </div>
+            <div class="description">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-overlay"></div>
+
+      <div id="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+</div>

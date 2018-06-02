@@ -1,3 +1,31 @@
-<p>
-  sign-up works!
-</p>
+<div class="page auth">
+  <nav>
+    <div class="nav-group">
+      <a href="#" class="js-menu nav-item">
+        <span class="icon-list-unordered"></span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="content-scrollable">
+    <div class="wrapper-auth">
+      <div class="at-pwd-form">
+        <form [formGroup]="signUpForm" (submit)="submit()">
+          <h1 class="title-auth">注册</h1>
+          <p class="subtitle-auth">大牛管家</p>
+          <div class="input">
+            <input formControlName="username" type="text" placeholder="用户名">
+          </div>
+          <div class="input">
+            <input formControlName="password" type="password" placeholder="密码">
+          </div>
+          <div class="input">
+            <input formControlName="password" type="password" placeholder="再次输入密码">
+          </div>
+
+          <button type="submit" class="btn-primary">登录</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

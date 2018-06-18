@@ -8,10 +8,11 @@ var mongoose = require('mongoose');
 
 var auth = require('./routes/auth');
 var uploader = require('./routes/uploader');
+var order = require('./routes/order');
 
 var app = express();
 
-mongoose.connect('mongodb://duty:Pengcl19821025@101.200.72.54:27017/duty', {});
+mongoose.connect('mongodb://ywy:Pengcl19821025@101.200.72.54:27017/ywy', {});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', auth);
 app.use('/uploader', uploader);
+app.use('/order', order);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

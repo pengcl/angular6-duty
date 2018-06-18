@@ -6,6 +6,9 @@ var Messages = require('../../utils/db/modules/messages');
 
 /* GET users listing. */
 
+function checkPwd() {
+}
+
 router.route('/signUp').post(function (req, res, next) {
   if (req.body.username && req.body.password) {
     Users.findBySomething(req.body.username, function (err, user) {
@@ -75,11 +78,19 @@ router.route('/signIn').post(function (req, res, next) {
             result: ''
           });
         } else {//如果数据库存在此mobile的用户
-          res.send({
-            success: true,
-            msg: '度特欢迎您的登录，期待您能创造价值！',
-            result: user._id
-          });
+          if (req.body.password === user.password) {
+            res.send({
+              success: true,
+              msg: '度特欢迎您的登录，期待您能创造价值！',
+              result: user._id
+            });
+          } else {
+            res.send({
+              success: false,
+              msg: '登录失败，用户名或密码不正确！',
+              result: user._id
+            });
+          }
         }
       }
     });

@@ -31,16 +31,6 @@
         </select>
         <span class="icon-cog"></span>
       </div>
-      <div class="options-web">
-        <a class="js-toggle-list-privacy nav-item">
-          <span class="icon-lock"></span>
-          <span class="icon-unlock"></span>
-        </a>
-
-        <a class="js-delete-list nav-item">
-          <span class="icon-trash"></span>
-        </a>
-      </div>
     </div>
 
     <form class="js-todo-new todo-new input-symbol">
@@ -50,7 +40,7 @@
   </nav>
 
   <div class="content-scrollable list-items">
-    <div class="list-item todo editing">
+    <!--<div class="list-item todo editing">
       <label class="checkbox">
         <input type="checkbox" checked="{{todo.checked}}" name="checked">
         <span class="checkbox-custom"></span>
@@ -59,12 +49,12 @@
       <a class="js-delete-item delete-item" href="#">
         <span class="icon-trash"></span>
       </a>
+    </div>-->
+    <div class="wrapper-message">
+      <div class="title-message">无申请内容</div>
+      <div class="subtitle-message">您还没有申请过押无忧的服务，<a routerLink="/admin/add">点我申请</a></div>
     </div>
     <!--<div class="wrapper-message">
-      <div class="title-message">lists.show.noTasks</div>
-      <div class="subtitle-message">lists.show.addAbove</div>
-    </div>
-    <div class="wrapper-message">
       <div class="title-message">lists.show.loading</div>
     </div>-->
   </div>

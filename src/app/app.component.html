@@ -4,7 +4,7 @@
       <section id="menu">
         <div class="language-toggle">
           <!--<span class="active">中文</span>-->
-          <a href="#" class="js-toggle-language">英文</a>
+          <a href="#" class="js-toggle-language">中文</a>
         </div>
         <div class="btns-group-vertical">
           <a href="#" class="js-user-menu btn-secondary">
@@ -15,11 +15,11 @@
           <!--<a class="js-logout btn-secondary">退出</a>-->
         </div>
         <div class="btns-group">
-          <a href="" class="btn-secondary">登录</a>
-          <a href="" class="btn-secondary">注册</a>
+          <a routerLink="/auth/signIn" class="btn-secondary">登录</a>
+          <a routerLink="/auth/signUp" href="" class="btn-secondary">注册</a>
         </div>
 
-        <div class="list-todos">
+        <div *ngIf="isLogin" class="list-todos">
           <a class="js-new-list link-list-new">
             <span class="icon-plus"></span>添加
           </a>
@@ -34,7 +34,7 @@
         </div>
       </section>
 
-      <div class="notifications">
+      <div style="display: none;" class="notifications">
         <div class="notification">
           <span class="icon-sync"></span>
           <div class="meta">

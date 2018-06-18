@@ -1,17 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './/app-routing.module';
 
-import {JwtModule} from "@auth0/angular-jwt";
+import {JwtModule} from '@auth0/angular-jwt';
+
+import {WeUiModule} from 'ngx-weui';
 
 export function tokenGetter() {
   console.log(Config.prefix.api + '/auth');
   return localStorage.getItem('access_token');
 }
 
-//components
+// components
 import {AppComponent} from './app.component';
 import {SignUpComponent} from './auth/sign-up/sign-up.component';
 import {SignInComponent} from './auth/sign-in/sign-in.component';
@@ -20,10 +22,10 @@ import {AdminItemComponent} from './admin/item/item.component';
 import {AdminAddComponent} from './admin/add/add.component';
 import {AdminEditComponent} from './admin/edit/edit.component';
 
-//services
-import {SERVICES_DECLARATIONS} from "./service";
+// services
+import {SERVICES_DECLARATIONS} from './service';
 
-import {Config} from "./config";
+import {Config} from './config';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import {Config} from "./config";
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    WeUiModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

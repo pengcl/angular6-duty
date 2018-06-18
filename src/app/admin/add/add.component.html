@@ -1,3 +1,332 @@
-<p>
-  add works!
-</p>
+<div class="page lists-show">
+  <nav class="js-title-nav">
+    <!--<div class="nav-group">
+      <a href="#" class="js-menu nav-item">
+        <span class="icon-list-unordered"></span>
+      </a>
+    </div>-->
+
+    <h1 class="js-edit-list title-page">
+      <span class="title-wrapper">押金申请</span>
+      <span class="count-list">incompleteCount</span>
+    </h1>
+
+    <!--<div class="nav-group right">
+      <div class="nav-item options-mobile">
+        <select class="list-edit">
+          <option disabled selected>
+            ss
+          </option>
+          <option value="public">public</option>
+          <option value="private">private</option>
+          <option value="delete">delete</option>
+        </select>
+        <span class="icon-cog"></span>
+      </div>
+    </div>-->
+
+    <form class="js-todo-new todo-new input-symbol">
+      <input type="text" readonly placeholder="我已阅读并同意《爱拼在线用户协议》"/>
+      <span class="icon-check"></span>
+    </form>
+  </nav>
+
+  <div class="content-scrollable list-items">
+    <form [formGroup]="orderForm">
+      <div class="weui-cells__title">基本信息</div>
+      <div formGroupName="company" class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('company.name').invalid && isSubmit}">
+          <div class="weui-cell__hd"><label class="weui-label">公司名称</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="name" placeholder="请输入公司名称">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('company.address').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">地址</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="address" placeholder="请输入地址">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('company.license').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">营业执照(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" *ngFor="let item of license.queue"
+                      [weui-thumb]="item._file"
+                      [ngClass]="{'weui-uploader__file_status': item.isError || item.isUploading}">
+                    <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{item.progress}}%</div>
+                    <div class="weui-uploader__file-content" *ngIf="item.isError">
+                      <i class="weui-icon-warn"></i>
+                    </div>
+                  </li>
+                </ul>
+                <div class="weui-uploader__input-box" *ngIf="license?.queue?.length < 1">
+                  <input class="weui-uploader__input" type="file" accept="image/*" [weui-uploader-file]="license">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('company.legal.passport.A').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">法人身份证-正面(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" *ngFor="let item of passportA.queue"
+                      [weui-thumb]="item._file"
+                      [ngClass]="{'weui-uploader__file_status': item.isError || item.isUploading}">
+                    <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{item.progress}}%</div>
+                    <div class="weui-uploader__file-content" *ngIf="item.isError">
+                      <i class="weui-icon-warn"></i>
+                    </div>
+                  </li>
+                </ul>
+                <div class="weui-uploader__input-box" *ngIf="passportA?.queue?.length < 1">
+                  <input class="weui-uploader__input" type="file" accept="image/*" [weui-uploader-file]="passportA">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('company.legal.passport.B').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">法人身份证-反面(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" *ngFor="let item of passportB.queue"
+                      [weui-thumb]="item._file"
+                      [ngClass]="{'weui-uploader__file_status': item.isError || item.isUploading}">
+                    <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{item.progress}}%</div>
+                    <div class="weui-uploader__file-content" *ngIf="item.isError">
+                      <i class="weui-icon-warn"></i>
+                    </div>
+                  </li>
+                </ul>
+                <div class="weui-uploader__input-box" *ngIf="passportB?.queue?.length < 1">
+                  <input class="weui-uploader__input" type="file" accept="image/*" [weui-uploader-file]="passportB">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">联系方式</div>
+      <div formGroupName="contact" class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('contact.name').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">联系人</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="name" placeholder="请输入联系人名称">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('contact.tel').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">电话</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="tel" placeholder="请输入电话">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('contact.mobile').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">手机</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="mobile" placeholder="请输入手机号码">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">展会信息</div>
+      <div formGroupName="exhibition" class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.name').invalid && isSubmit}">
+          <div class="weui-cell__hd"><label class="weui-label">展会名称</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="name" placeholder="请输入展会名称">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.company').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展商名称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="company" placeholder="请输入展商名称">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.no').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展位号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="no" placeholder="请输入展位号">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.contract').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">合同</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="contract" placeholder="请输入合同">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.startAt').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展会时间</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="startAt" placeholder="请输入展会时间">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.buildAt').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">搭建时间</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="buildAt" placeholder="请输入搭建时间">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.manuscript').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">审稿图(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" *ngFor="let item of manuscript.queue"
+                      [weui-thumb]="item._file"
+                      [ngClass]="{'weui-uploader__file_status': item.isError || item.isUploading}">
+                    <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{item.progress}}%</div>
+                    <div class="weui-uploader__file-content" *ngIf="item.isError">
+                      <i class="weui-icon-warn"></i>
+                    </div>
+                  </li>
+                </ul>
+                <div class="weui-uploader__input-box" *ngIf="manuscript?.queue?.length < 1">
+                  <input class="weui-uploader__input" type="file" accept="image/*" [weui-uploader-file]="manuscript">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('exhibition.bill').invalid && isSubmit}">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">付款单(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" *ngFor="let item of bill.queue"
+                      [weui-thumb]="item._file"
+                      [ngClass]="{'weui-uploader__file_status': item.isError || item.isUploading}">
+                    <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{item.progress}}%</div>
+                    <div class="weui-uploader__file-content" *ngIf="item.isError">
+                      <i class="weui-icon-warn"></i>
+                    </div>
+                  </li>
+                </ul>
+                <div class="weui-uploader__input-box" *ngIf="bill?.queue?.length < 1">
+                  <input class="weui-uploader__input" type="file" accept="image/*" [weui-uploader-file]="bill">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">账户信息</div>
+      <div formGroupName="account" class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('account.type').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">付款方式</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="type" placeholder="请输入付款方式">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('account.name').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">户名</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="name" placeholder="请输入户名">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('account.no').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">账号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="no" placeholder="请输入账号">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-btn-area">
+        <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">确定</a>
+      </div>
+    </form>
+  </div>
+</div>
+

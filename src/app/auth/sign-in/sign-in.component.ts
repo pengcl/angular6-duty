@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../service/auth.service";
-
-import {interval as observableInterval} from 'rxjs/index';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../service/auth.service';
+import {DialogService} from 'ngx-weui';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,7 +18,9 @@ export class SignInComponent implements OnInit {
   timer;
   timers;
 
-  constructor(private authSvc: AuthService) {
+  constructor(private router: Router,
+              private dialogSvc: DialogService,
+              private authSvc: AuthService) {
   }
 
 
@@ -27,18 +29,21 @@ export class SignInComponent implements OnInit {
       username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)])
     });
-
-    this.signInForm.get('username').setValue('PengChenlan');
-    this.signInForm.get('password').setValue('zouleyuan');
-
-    this.submit();
   }
 
   submit() {
+    if (this.isLoading) {
+      return false;
+    }
+    this.isLoading = true;
     this.authSvc.signIn(this.signInForm.value).subscribe(res => {
+      this.isLoading = false;
       if (res.success) {
-        this.authSvc.updateLoginStatus(res.result)
+        this.authSvc.updateLoginStatus(res.result);
+        this.router.navigate(['/admin/list']);
+      } else {
+        this.dialogSvc.show({content: res.msg, confirm: '我知道了', cancel: ''}).subscribe();
       }
-    })
-  };
+    });
+  }
 }

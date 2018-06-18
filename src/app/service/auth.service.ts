@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, Subject} from "rxjs/index";
-import {Md5} from "md5-typescript";
-import {Config} from "../config";
+import {HttpClient} from '@angular/common/http';
+import {Observable, Subject} from 'rxjs/index';
+import {Md5} from 'md5-typescript';
+import {Config} from '../config';
 
-import {StorageService} from "./base/storage.service";
+import {StorageService} from './base/storage.service';
 
 @Injectable()
 export class AuthService {
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   get currentUser() {
-    let user = this.storageSvc.get('user');
+    const user = this.storageSvc.get('user');
 
     return user;
   }

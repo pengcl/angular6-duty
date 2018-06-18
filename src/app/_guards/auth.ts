@@ -13,7 +13,7 @@ import {
   CanLoad,
   Route
 } from '@angular/router';
-import {AuthService} from "../service/auth.service";
+import {AuthService} from '../service/auth.service';
 
 
 @Injectable()
@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    let url: string = state.url;
+    const url: string = state.url;
     return this.checkLogin(url);
   }
 
@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canLoad(route: Route): boolean {
 
-    let url = `/${route.path}`;
+    const url = `/${route.path}`;
     return this.checkLogin(url);
   }
 

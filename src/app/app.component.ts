@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {AuthService} from "./service/auth.service";
+import {AuthService} from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,11 @@ import {AuthService} from "./service/auth.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isLogin = false;
+
   constructor(private authSvc: AuthService) {
     this.authSvc.getLoginStatus().subscribe(res => {
-      console.log(res);
-    })
+      this.isLogin = res;
+    });
   }
 }

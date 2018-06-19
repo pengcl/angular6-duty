@@ -22,8 +22,8 @@ export class AdminAddComponent implements OnInit {
     url: Config.prefix.api + '/uploader/upload',
     headers: [],
     auto: true,
-    onUploadSuccess: () => {
-      this.orderForm.get('company.license').setValue(arguments[1]);
+    onUploadSuccess: (a, b) => {
+      this.orderForm.get('company.license').setValue(b);
     }
   });
 
@@ -32,8 +32,8 @@ export class AdminAddComponent implements OnInit {
     url: Config.prefix.api + '/uploader/upload',
     headers: [],
     auto: true,
-    onUploadSuccess: () => {
-      this.orderForm.get('company.legal.passport.A').setValue(arguments[1]);
+    onUploadSuccess: (a, b) => {
+      this.orderForm.get('company.legal.passport.A').setValue(b);
     }
   });
 
@@ -41,8 +41,8 @@ export class AdminAddComponent implements OnInit {
     url: Config.prefix.api + '/uploader/upload',
     headers: [],
     auto: true,
-    onUploadSuccess: () => {
-      this.orderForm.get('company.legal.passport.B').setValue(arguments[1]);
+    onUploadSuccess: (a, b) => {
+      this.orderForm.get('company.legal.passport.B').setValue(b);
     }
   });
 
@@ -50,8 +50,8 @@ export class AdminAddComponent implements OnInit {
     url: Config.prefix.api + '/uploader/upload',
     headers: [],
     auto: true,
-    onUploadSuccess: () => {
-      this.orderForm.get('exhibition.manuscript').setValue(arguments[1]);
+    onUploadSuccess: (a, b) => {
+      this.orderForm.get('exhibition.manuscript').setValue(b);
     }
   });
 
@@ -59,8 +59,8 @@ export class AdminAddComponent implements OnInit {
     url: Config.prefix.api + '/uploader/upload',
     headers: [],
     auto: true,
-    onUploadSuccess: () => {
-      this.orderForm.get('exhibition.bill').setValue(arguments[1]);
+    onUploadSuccess: (a, b) => {
+      this.orderForm.get('exhibition.bill').setValue(b);
     }
   });
 

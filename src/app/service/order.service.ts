@@ -9,6 +9,21 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
+  find(): Observable<any> {
+
+    return this.http.get(Config.prefix.api + '/order/find');
+  }
+
+  findById(id): Observable<any> {
+
+    return this.http.get(Config.prefix.api + '/order/find?id=' + id);
+  }
+
+  findByOwner(uid): Observable<any> {
+
+    return this.http.get(Config.prefix.api + '/order/find?uid=' + uid);
+  }
+
   submit(body): Observable<any> {
 
     return this.http.post(Config.prefix.api + '/order/submit', body);

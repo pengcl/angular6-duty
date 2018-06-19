@@ -1,13 +1,5 @@
-<div class="page lists-show">
+<div *ngIf="orders" class="page lists-show">
   <nav class="js-title-nav">
-    <form class="js-edit-form list-edit-form">
-      <input type="text" name="name" value="{{name}}">
-      <div class="nav-group right">
-        <a href="#" class="js-cancel nav-item">
-          <span class="icon-close js-cancel"></span>
-        </a>
-      </div>
-    </form>
     <div class="nav-group">
       <a href="#" class="js-menu nav-item">
         <span class="icon-list-unordered"></span>
@@ -15,11 +7,11 @@
     </div>
 
     <h1 class="js-edit-list title-page">
-      <span class="title-wrapper">listName</span>
-      <span class="count-list">incompleteCount</span>
+      <span class="title-wrapper">申请列表</span>
+      <span class="count-list">{{orders.length}}</span>
     </h1>
 
-    <div class="nav-group right">
+    <!--<div class="nav-group right">
       <div class="nav-item options-mobile">
         <select class="list-edit">
           <option disabled selected>
@@ -31,26 +23,27 @@
         </select>
         <span class="icon-cog"></span>
       </div>
-    </div>
+    </div>-->
 
     <form class="js-todo-new todo-new input-symbol">
-      <input type="text" placeholder="lists.show.typeToAdd"/>
+      <input readonly type="text" placeholder="继续申请"/>
       <span class="icon-add js-todo-add"></span>
     </form>
   </nav>
 
   <div class="content-scrollable list-items">
-    <!--<div class="list-item todo editing">
+    <div [routerLink]="['/admin/item',item._id]" *ngFor="let item of orders" class="list-item todo editing">
       <label class="checkbox">
-        <input type="checkbox" checked="{{todo.checked}}" name="checked">
+        <input type="checkbox" checked="{{item.checked}}" name="checked">
         <span class="checkbox-custom"></span>
       </label>
-      <input type="text" value="todo.text" placeholder=todos.item.taskName>
-      <a class="js-delete-item delete-item" href="#">
+      <input type="text" value="{{item.company.name}}" readonly>
+      <span class="date">{{item.meta.createAt | date : 'yyyy-MM-dd'}}</span>
+      <!--<a class="delete-item" href="#">
         <span class="icon-trash"></span>
-      </a>
-    </div>-->
-    <div class="wrapper-message">
+      </a>-->
+    </div>
+    <div *ngIf="orders.length === 0" class="wrapper-message">
       <div class="title-message">无申请内容</div>
       <div class="subtitle-message">您还没有申请过押无忧的服务，<a routerLink="/admin/add">点我申请</a></div>
     </div>

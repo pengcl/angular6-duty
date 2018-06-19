@@ -1,3 +1,280 @@
-<p>
-  item works!
-</p>
+<div *ngIf="order" class="page lists-show">
+  <nav class="js-title-nav">
+    <div class="nav-group">
+      <a href="#" class="js-menu nav-item">
+        <span class="icon-list-unordered"></span>
+      </a>
+    </div>
+
+    <h1 class="js-edit-list title-page">
+      <span class="title-wrapper">{{order.company.name}}</span>
+      <span class="count-list">{{order.contact.name}}</span>
+    </h1>
+
+    <!--<div class="nav-group right">
+      <div class="nav-item options-mobile">
+        <select class="list-edit">
+          <option disabled selected>
+            ss
+          </option>
+          <option value="public">public</option>
+          <option value="private">private</option>
+          <option value="delete">delete</option>
+        </select>
+        <span class="icon-cog"></span>
+      </div>
+    </div>-->
+
+    <form class="js-todo-new todo-new input-symbol">
+      <input readonly type="text" placeholder="继续申请"/>
+      <span class="icon-add js-todo-add"></span>
+    </form>
+  </nav>
+
+  <div class="content-scrollable list-items">
+      <div class="weui-cells__title">基本信息</div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">公司名称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" value="{{order.company.name}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">地址</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" value="{{order.company.address}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">营业执照(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" [ngStyle]="{'background-image':'url(' + order.company.license + ')'}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">法人身份证-正面(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" [ngStyle]="{'background-image':'url(' + order.company.legal.passport.A + ')'}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">法人身份证-反面(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" [ngStyle]="{'background-image':'url(' + order.company.legal.passport.B + ')'}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">联系方式</div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">联系人</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.contact.name}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">电话</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.contact.tel}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">手机</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.contact.mobile}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">展会信息</div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">展会名称</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.name}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展商名称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.company}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展位号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.no}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">合同</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.contract}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">展会时间</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.startAt}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">搭建时间</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.exhibition.buildAt}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">审稿图(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" [ngStyle]="{'background-image':'url(' + order.exhibition.manuscript + ')'}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title">付款单(上传图片)</p>
+              </div>
+              <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files">
+                  <li class="weui-uploader__file" [ngStyle]="{'background-image':'url(' + order.exhibition.bill + ')'}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">账户信息</div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">付款方式</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.account.type}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">户名</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.account.name}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">账号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" readonly value="{{order.account.no}}">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+

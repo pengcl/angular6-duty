@@ -5,8 +5,26 @@ var multipartMiddleware = multipart();
 
 var Orders = require('../../utils/db/modules/orders');
 
+
+router.get('/find', function (req, res, next) {
+  if (req.query.id && !req.query.uid) {
+    Orders.findById(req.query.id, function (err, order) {
+      res.send(order);
+    });
+  }
+  if (req.query.uid && !req.query.id) {
+    Orders.findByOwner(req.query.uid, function (err, orders) {
+      res.send(orders);
+    });
+  }
+  if (!req.query.id && !req.query.uid) {
+    Orders.findAll(function (err, orders) {
+      res.send(orders);
+    });
+  }
+});
+
 router.route('/submit').post(multipartMiddleware, function (req, res, next) {
-  console.log(req.body);
   const order = new Orders(req.body);
 
   order.save(function (err, order) { //保存用户信息到数据库

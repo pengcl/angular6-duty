@@ -17,7 +17,7 @@
     flex: 1;
   }
   .delete-item {
-    flex: 0, 0, 3rem;
+    flex: 0, 0, 44px;
   }
 
   // Style of list-item children
@@ -30,10 +30,16 @@
     }
   }
 
+  .date {
+    color: $color-medium-rare;
+    line-height: 3rem;
+  }
+
   .delete-item {
     color: $color-medium-rare;
     line-height: 3rem;
     text-align: center;
+    width: 44px;
 
     &:hover {
       color: $color-primary;

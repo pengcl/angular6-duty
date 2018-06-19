@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 //申明一个mongoons对象
 var OrdersSchema = new mongoose.Schema({
   uid: String,
+  status: Number,
   company: {
     name: String,
     address: String,
@@ -51,6 +52,7 @@ var OrdersSchema = new mongoose.Schema({
 OrdersSchema.pre('save', function (next) {
   if (this.isNew) {
     this.meta.createAt = this.meta.sendAt = Date.now();
+    this.status = 0;
   }
   next();
 });

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  domain: 'wx.dutyhb.com',
-  webHost: 'http://wx.dutyhb.com'
+  domain: 'wx.dutyzl.com',
+  webHost: 'http://wx.dutyzl.com'
 };
 
 /*

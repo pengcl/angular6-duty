@@ -19,6 +19,7 @@ export class AdminListComponent implements OnInit {
     this.user = this.authSvc.currentUser;
     this.orderSvc.findByOwner(this.user).subscribe(res => {
       this.orders = res;
+      this.orderSvc.set(res);
     })
   }
 

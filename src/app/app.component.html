@@ -3,53 +3,50 @@
     <div id="container">
       <!--menuOpen-->
       <section id="menu">
-        <div class="language-toggle">
-          <!--<span class="active">中文</span>-->
+        <!--<div class="language-toggle">
+          <span class="active">中文</span>
           <a href="#" class="js-toggle-language">中文</a>
-        </div>
-        <!--<div class="btns-group-vertical">
+        </div>-->
+        <div *ngIf="isLogin" class="btns-group-vertical">
           <a href="#" class="js-user-menu btn-secondary">
-            &lt;!&ndash;<span class="icon-arrow-up"></span>&ndash;&gt;
+            <span class="icon-arrow-up"></span>
             <span class="icon-arrow-down"></span>
             3559996@qq.com
           </a>
-          &lt;!&ndash;<a class="js-logout btn-secondary">退出</a>&ndash;&gt;
-        </div>-->
-        <div class="btns-group">
+          <a class="js-logout btn-secondary">退出</a>
+        </div>
+        <!--<div class="btns-group">
           <a routerLink="/auth/signIn" class="btn-secondary">登录</a>
           <a routerLink="/auth/signUp" href="" class="btn-secondary">注册</a>
-        </div>
+        </div>-->
 
-        <div *ngIf="isLogin" class="list-todos">
-          <a class="js-new-list link-list-new">
-            <span class="icon-plus"></span>添加
-          </a>
+        <div *ngIf="isLogin && orders" class="list-todos">
 
           <a href="" title="" class="list-todo">
             <span class="icon-lock"></span>
 
-            <span class="count-list">12</span>
+            <span class="count-list">{{orders.resolving.length}}</span>
 
             审核中
           </a>
           <a href="" title="" class="list-todo">
             <span class="icon-lock"></span>
 
-            <span class="count-list">12</span>
+            <span class="count-list">{{orders.resolved.length}}</span>
 
-            审核通过
+            通过
           </a>
           <a href="" title="" class="list-todo">
             <span class="icon-lock"></span>
 
-            <span class="count-list">12</span>
+            <span class="count-list">{{orders.rejected.length}}</span>
 
             不通过
           </a>
           <a href="" title="" class="list-todo">
             <span class="icon-lock"></span>
 
-            <span class="count-list">12</span>
+            <span class="count-list">{{orders.finished.length}}</span>
 
             已完成
           </a>

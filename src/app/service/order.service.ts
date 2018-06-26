@@ -1,10 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/index';
+import {Observable, Subject} from 'rxjs/index';
 import {Config} from '../config';
 
 @Injectable()
 export class OrderService {
+
+  private orders = new Subject<any[]>();
+
+  set(orders) {
+    this.orders.next(orders)
+  }
+
+  get(): Observable<any[]> {
+    return this.orders.asObservable();
+  }
 
   constructor(private http: HttpClient) {
   }

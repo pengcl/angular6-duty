@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 //申明一个mongoons对象
 var OrdersSchema = new mongoose.Schema({
   uid: String,
-  status: Number,
+  status: Number, // 0:审核中|1:审核通过|2:已完成|3:已拒绝
   company: {
     name: String,
     address: String,
@@ -66,7 +66,7 @@ OrdersSchema.statics = {
     return this.findOne({_id: id}).exec(cb)
   },
   findByOwner: function (uid, cb) {
-    return this.find({$or: [{to: uid}, {from: uid}]}).sort('meta.publicAt').exec(cb) //回调
+    return this.find({uid: uid}).sort('meta.publicAt').exec(cb) //回调
   }
 };
 //暴露出去的方法

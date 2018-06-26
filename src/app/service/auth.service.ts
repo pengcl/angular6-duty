@@ -46,6 +46,7 @@ export class AuthService {
   }
 
   get isLogged(): boolean {
+    this.loginStatus.next(!!this.currentUser);
     return !!this.currentUser;
   }
 

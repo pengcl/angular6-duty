@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Users = require('../../utils/db/modules/users');//导入模型数据模块
 var Messages = require('../../utils/db/modules/messages');
+var Orders = require('../../utils/db/modules/orders');
 
 /* GET users listing. */
 
@@ -79,10 +80,14 @@ router.route('/signIn').post(function (req, res, next) {
           });
         } else {//如果数据库存在此mobile的用户
           if (req.body.password === user.password) {
-            res.send({
-              success: true,
-              msg: '度特欢迎您的登录，期待您能创造价值！',
-              result: user._id
+            console.log(user.id);
+            Orders.findByOwner(user._id, function (err, orders) {
+              res.send({
+                success: true,
+                msg: '度特欢迎您的登录，期待您能创造价值！',
+                orders: orders,
+                result: user._id
+              });
             });
           } else {
             res.send({

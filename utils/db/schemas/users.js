@@ -30,6 +30,10 @@ var UsersSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  type: {
+    type: Number,
+    default: 0 // 0:普通用户|1-8:管理员|9:超级管理员
+  },
   gallery: Array,
   account: {
     total: {

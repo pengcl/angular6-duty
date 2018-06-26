@@ -13,10 +13,6 @@ export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
   isLoading = false;
-  isSubmit = false;
-
-  timer;
-  timers;
 
   constructor(private router: Router,
               private dialogSvc: DialogService,

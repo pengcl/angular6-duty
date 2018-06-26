@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var auth = require('./routes/auth');
+var user = require('./routes/user');
 var uploader = require('./routes/uploader');
 var order = require('./routes/order');
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*app.use(utils.sign(config));*/
 
 app.use('/auth', auth);
+app.use('/user', user);
 app.use('/uploader', uploader);
 app.use('/order', order);
 

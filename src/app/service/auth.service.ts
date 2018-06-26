@@ -41,7 +41,6 @@ export class AuthService {
 
   get currentUser() {
     const user = this.storageSvc.get('user');
-
     return user;
   }
 

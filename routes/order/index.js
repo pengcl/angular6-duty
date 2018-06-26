@@ -18,6 +18,7 @@ router.get('/find', function (req, res, next) {
     Orders.findByOwner(req.query.uid, function (err, orders) {
       res.send(orders);
     });
+
   }
   if (!req.query.id && !req.query.uid) {
     console.log('!uid && !id');

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 
 import {AuthService} from './service/auth.service';
-import {UserService} from "./service/user.service";
-import {OrderService} from "./service/order.service";
+import {UserService} from './service/user.service';
+import {OrderService} from './service/order.service';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +49,6 @@ export class AppComponent {
         }
       });
       this.orders = orders;
-    })
+    });
   }
 }

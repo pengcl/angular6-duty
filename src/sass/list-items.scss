@@ -24,15 +24,25 @@
   input[type="text"] {
     background: transparent;
     cursor: pointer;
-
+    padding: 0 10px;
     &:focus {
       cursor: text;
     }
   }
 
+  .name {
+    color: #999;
+    line-height: 3rem;
+  }
+
   .date {
     color: $color-medium-rare;
     line-height: 3rem;
+  }
+
+  .status {
+    line-height: 3rem;
+    padding: 0 10px;
   }
 
   .delete-item {

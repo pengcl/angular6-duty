@@ -44,8 +44,11 @@ router.route('/signUp').post(function (req, res, next) {
               res.send({
                 success: true,
                 msg: '度特欢迎您的加入，期待您能创造价值！',
-                result: user._id
-              });
+                result: {
+                  id: user._id,
+                  admin: user.type === 9
+                }
+              })
             }
           });
         } else {//如果数据库存在此mobile的用户
@@ -86,7 +89,10 @@ router.route('/signIn').post(function (req, res, next) {
                 success: true,
                 msg: '度特欢迎您的登录，期待您能创造价值！',
                 orders: orders,
-                result: user._id
+                result: {
+                  id: user._id,
+                  admin: user.type === 9
+                }
               });
             });
           } else {

@@ -1,7 +1,7 @@
 <div *ngIf="order" class="page lists-show">
   <nav class="js-title-nav">
     <div class="nav-group">
-      <a href="#" class="js-menu nav-item">
+      <a (click)="menu()" class="js-menu nav-item">
         <span class="icon-list-unordered"></span>
       </a>
     </div>
@@ -11,24 +11,16 @@
       <span class="count-list">{{order.contact.name}}</span>
     </h1>
 
-    <!--<div class="nav-group right">
+    <div class="nav-group right">
       <div class="nav-item options-mobile">
-        <select class="list-edit">
-          <option disabled selected>
-            ss
-          </option>
-          <option value="public">public</option>
-          <option value="private">private</option>
-          <option value="delete">delete</option>
-        </select>
-        <span class="icon-cog"></span>
+        <span class="icon-unlock"></span>
       </div>
-    </div>-->
+    </div>
 
-    <form class="js-todo-new todo-new input-symbol">
+    <!--<form class="js-todo-new todo-new input-symbol">
       <input readonly type="text" placeholder="继续申请"/>
-      <span class="icon-add js-todo-add"></span>
-    </form>
+      <span routerLink="/admin/add" class="icon-add js-todo-add"></span>
+    </form>-->
   </nav>
 
   <div class="content-scrollable list-items">

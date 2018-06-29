@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 
 import {Config} from "../../config";
 import {AuthService} from "../../service/auth.service";
+import {MenuService} from "../../service/menu.service";
 import {OrderService} from "../../service/order.service";
 
 @Component({
@@ -13,21 +14,38 @@ import {OrderService} from "../../service/order.service";
 export class AdminItemComponent implements OnInit {
 
   config = Config;
+
+  user;
+  orders;
   id;
   order;
 
   constructor(private route: ActivatedRoute,
               private authSvc: AuthService,
+              private menuSvc: MenuService,
               private orderSvc: OrderService) {
   }
 
   ngOnInit() {
+    this.user = this.authSvc.currentUser;
+    if (this.user.admin) {
+      this.orderSvc.find().subscribe(res => {
+        this.orders = res;
+        this.orderSvc.set(res);
+      })
+    } else {
+      this.orderSvc.findByOwner(this.user.id).subscribe(res => {
+        this.orders = res;
+        this.orderSvc.set(res);
+      })
+    }
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
     this.orderSvc.findById(this.id).subscribe(res => {
-      console.log(res);
       this.order = res;
     })
   }
 
+  menu() {
+    this.menuSvc.set(true);
+  }
 }

@@ -41,7 +41,7 @@ export class AuthService {
 
   get currentUser() {
     const user = this.storageSvc.get('user');
-    return user;
+    return JSON.parse(user);
   }
 
   get isLogged(): boolean {
@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   updateLoginStatus(user) {
-    this.storageSvc.set('user', user);
+    this.storageSvc.set('user', JSON.stringify(user));
     this.loginStatus.next(this.isLogged);
   }
 

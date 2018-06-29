@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../service/auth.service';
 import {DialogService} from 'ngx-weui';
+import {MenuService} from "../../service/menu.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -15,6 +16,7 @@ export class SignInComponent implements OnInit {
   isLoading = false;
 
   constructor(private router: Router,
+              private menuSvc: MenuService,
               private dialogSvc: DialogService,
               private authSvc: AuthService) {
   }
@@ -41,5 +43,9 @@ export class SignInComponent implements OnInit {
         this.dialogSvc.show({content: res.msg, confirm: '我知道了', cancel: ''}).subscribe();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.menuSvc.set(false);
   }
 }

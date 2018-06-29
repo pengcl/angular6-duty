@@ -1,7 +1,7 @@
 <div *ngIf="orders" class="page lists-show">
   <nav class="js-title-nav">
     <div class="nav-group">
-      <a href="#" class="js-menu nav-item">
+      <a (click)="menu()" class="js-menu nav-item">
         <span class="icon-list-unordered"></span>
       </a>
     </div>
@@ -11,35 +11,32 @@
       <span class="count-list">{{orders.length}}</span>
     </h1>
 
-    <!--<div class="nav-group right">
-      <div class="nav-item options-mobile">
-        <select class="list-edit">
-          <option disabled selected>
-            ss
-          </option>
-          <option value="public">public</option>
-          <option value="private">private</option>
-          <option value="delete">delete</option>
-        </select>
-        <span class="icon-cog"></span>
+    <div *ngIf="!user.admin" class="nav-group right">
+      <div routerLink="/admin/add" class="nav-item options-mobile">
+        <span class="icon-add"></span>
       </div>
-    </div>-->
+    </div>
 
-    <form class="js-todo-new todo-new input-symbol">
+    <!--<form class="js-todo-new todo-new input-symbol options-mobile">
       <input readonly type="text" placeholder="继续申请"/>
-      <span class="icon-add js-todo-add"></span>
-    </form>
+      <span routerLink="/admin/add" class="icon-add js-todo-add"></span>
+    </form>-->
   </nav>
 
   <div class="content-scrollable list-items">
     <div [routerLink]="['/admin/item',item._id]" *ngFor="let item of orders" class="list-item todo editing">
-      <label class="checkbox">
+      <!--<label class="checkbox">
         <input type="checkbox" checked="{{item.checked}}" name="checked">
         <span class="checkbox-custom"></span>
-      </label>
-      <input type="text" value="{{item.company.name}}" readonly>
+      </label>-->
+      <input type="text" value="{{user.admin ? item.company.name + '-' + item.contact.name : item.company.name}}" readonly>
       <span class="date">{{item.meta.createAt | date : 'yyyy-MM-dd'}}</span>
-      <!--<a class="delete-item" href="#">
+      <!--0:审核中|1:审核通过|2:已完成|3:已拒绝-->
+      <a *ngIf="item.status === 0" style="color: #B5CC18" class="resolving status">审核中</a>
+      <a *ngIf="item.status === 1" style="color: #16ab39" class="resolved status">审核通过</a>
+      <a *ngIf="item.status === 2" style="color: #2185D0" class="finished status">已完成</a>
+      <a *ngIf="item.status === 3" style="color: #DB2828" class="rejected status">已拒绝</a>
+      <!--<a *ngIf="user.id === item.uid" class="delete-item" href="#">
         <span class="icon-trash"></span>
       </a>-->
     </div>

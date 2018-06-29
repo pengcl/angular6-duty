@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Config} from '../../config';
 import {Uploader, UploaderOptions} from 'ngx-weui';
 import {AuthService} from '../../service/auth.service';
+import {MenuService} from "../../service/menu.service";
 import {OrderService} from '../../service/order.service';
 
 @Component({
@@ -14,6 +15,7 @@ import {OrderService} from '../../service/order.service';
 export class AdminAddComponent implements OnInit {
 
   user;
+  orders;
   orderForm: FormGroup;
   loading = false;
   isSubmit = false;
@@ -64,11 +66,25 @@ export class AdminAddComponent implements OnInit {
     }
   });
 
-  constructor(private authSvc: AuthService, private orderSvc: OrderService) {
+  constructor(private menuSvc: MenuService,
+              private authSvc: AuthService,
+              private orderSvc: OrderService) {
   }
 
   ngOnInit() {
     this.user = this.authSvc.currentUser;
+    if (this.user.admin) {
+      this.orderSvc.find().subscribe(res => {
+        this.orders = res;
+        this.orderSvc.set(res);
+      })
+    } else {
+      this.orderSvc.findByOwner(this.user.id).subscribe(res => {
+        this.orders = res;
+        this.orderSvc.set(res);
+      })
+    }
+
     this.orderForm = new FormGroup({
       uid: new FormControl('', [Validators.required]),
       company: new FormGroup({
@@ -116,6 +132,10 @@ export class AdminAddComponent implements OnInit {
     this.orderSvc.submit(this.orderForm.value).subscribe(res => {
       console.log(res);
     });
+  }
+
+  menu() {
+    this.menuSvc.set(true);
   }
 
 }

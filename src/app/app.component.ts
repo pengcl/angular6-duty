@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
+import {StorageService} from "./service/base/storage.service";
 import {AuthService} from './service/auth.service';
+import {MenuService} from "./service/menu.service";
 import {UserService} from './service/user.service';
 import {OrderService} from './service/order.service';
 
@@ -11,30 +14,34 @@ import {OrderService} from './service/order.service';
 })
 export class AppComponent {
   isLogin = false;
-  userInfo;
+  menuOpen;
   orders;
 
-  constructor(private authSvc: AuthService,
+  constructor(private router: Router,
+              private storageSvc: StorageService,
+              private authSvc: AuthService,
+              private menuSvc: MenuService,
               private userSvc: UserService,
               private orderSvc: OrderService) {
     this.authSvc.getLoginStatus().subscribe(res => {
       this.isLogin = res;
     });
 
-    this.userSvc.getUser().subscribe(userInfo => {
-      this.userInfo = userInfo;
-      console.log(this.userInfo);
+    this.menuSvc.get().subscribe(res => {
+      this.menuOpen = res;
     });
 
     this.orderSvc.get().subscribe(res => {
       // status: Number, // 0:审核中|1:审核通过|2:已完成|3:已拒绝
       const orders = {
+        all: [],
         resolving: [],
         resolved: [],
         finished: [],
         rejected: []
       };
       res.forEach(item => {
+        orders.all.push(item);
         if (item.status === 0) {
           orders.resolving.push(item);
         }
@@ -50,5 +57,14 @@ export class AppComponent {
       });
       this.orders = orders;
     });
+  }
+
+  logout() {
+    this.storageSvc.clear();
+    this.router.navigate(['/auth/signIn']);
+  }
+
+  menu() {
+    this.menuSvc.set(false);
   }
 }

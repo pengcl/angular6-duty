@@ -1,34 +1,26 @@
 <div class="page lists-show">
   <nav class="js-title-nav">
-    <!--<div class="nav-group">
-      <a href="#" class="js-menu nav-item">
+    <div class="nav-group">
+      <a (click)="menu()" class="js-menu nav-item">
         <span class="icon-list-unordered"></span>
       </a>
-    </div>-->
+    </div>
 
     <h1 class="js-edit-list title-page">
       <span class="title-wrapper">押金申请</span>
       <span class="count-list">incompleteCount</span>
     </h1>
 
-    <!--<div class="nav-group right">
+    <div class="nav-group right">
       <div class="nav-item options-mobile">
-        <select class="list-edit">
-          <option disabled selected>
-            ss
-          </option>
-          <option value="public">public</option>
-          <option value="private">private</option>
-          <option value="delete">delete</option>
-        </select>
-        <span class="icon-cog"></span>
+        <span class="icon-unlock"></span>
       </div>
-    </div>-->
+    </div>
 
-    <form class="js-todo-new todo-new input-symbol">
+    <!--<form class="js-todo-new todo-new input-symbol">
       <input type="text" readonly placeholder="我已阅读并同意《爱拼在线用户协议》"/>
       <span class="icon-check"></span>
-    </form>
+    </form>-->
   </nav>
 
   <div class="content-scrollable list-items">
@@ -323,9 +315,11 @@
         </div>
       </div>
 
-      <div class="weui-btn-area">
+      <button _ngcontent-c2="" class="btn-primary" type="submit">确定</button>
+
+      <!--<div class="weui-btn-area">
         <a (click)="submit()" weui-button [weui-loading]="loading" class="weui-btn weui-btn_primary">确定</a>
-      </div>
+      </div>-->
     </form>
   </div>
 </div>

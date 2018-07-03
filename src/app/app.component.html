@@ -8,8 +8,8 @@
         <a href="#" class="js-toggle-language">中文</a>
       </div>-->
       <div *ngIf="isLogin" class="btns-group-vertical">
-        <a href="#" class="js-user-menu btn-secondary">
-          3559996@qq.com
+        <a class="js-user-menu btn-secondary">
+          {{userInfo?.username}},您好！
         </a>
         <a (click)="logout()" class="js-logout btn-secondary">退出</a>
       </div>

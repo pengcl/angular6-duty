@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {AuthService} from "../../service/auth.service";
-import {MenuService} from "../../service/menu.service";
-import {OrderService} from "../../service/order.service";
+import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../service/auth.service';
+import {MenuService} from '../../service/menu.service';
+import {OrderService} from '../../service/order.service';
 
 @Component({
   selector: 'app-admin-list',
@@ -40,7 +40,7 @@ export class AdminListComponent implements OnInit {
           }
           this.orders = orders;
           this.orderSvc.set(res);
-        })
+        });
       } else {
         this.orderSvc.findByOwner(this.user.id).subscribe(res => {
           let orders = [];
@@ -55,7 +55,7 @@ export class AdminListComponent implements OnInit {
           }
           this.orders = orders;
           this.orderSvc.set(res);
-        })
+        });
       }
     });
   }

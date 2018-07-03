@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Config} from '../../config';
-import {Uploader, UploaderOptions} from 'ngx-weui';
+import {Uploader, UploaderOptions, PickerService, DialogService} from 'ngx-weui';
 import {AuthService} from '../../service/auth.service';
-import {MenuService} from "../../service/menu.service";
+import {MenuService} from '../../service/menu.service';
 import {OrderService} from '../../service/order.service';
 
 @Component({
@@ -66,7 +67,21 @@ export class AdminAddComponent implements OnInit {
     }
   });
 
-  constructor(private menuSvc: MenuService,
+  payType = [
+    {
+      label: '支付宝',
+      value: 'alipay'
+    },
+    {
+      label: '微信',
+      value: 'wxpay'
+    }
+  ];
+
+  constructor(private router: Router,
+              private menuSvc: MenuService,
+              private pickerSvc: PickerService,
+              private dialogSvc: DialogService,
               private authSvc: AuthService,
               private orderSvc: OrderService) {
   }
@@ -77,12 +92,12 @@ export class AdminAddComponent implements OnInit {
       this.orderSvc.find().subscribe(res => {
         this.orders = res;
         this.orderSvc.set(res);
-      })
+      });
     } else {
       this.orderSvc.findByOwner(this.user.id).subscribe(res => {
         this.orders = res;
         this.orderSvc.set(res);
-      })
+      });
     }
 
     this.orderForm = new FormGroup({
@@ -108,19 +123,30 @@ export class AdminAddComponent implements OnInit {
         company: new FormControl('', [Validators.required]),
         no: new FormControl('', [Validators.required]),
         manuscript: new FormControl('', [Validators.required]),
-        contract: new FormControl('', [Validators.required]),
         bill: new FormControl('', [Validators.required]),
         startAt: new FormControl('', [Validators.required]),
         buildAt: new FormControl('', [Validators.required])
       }),
       account: new FormGroup({
         type: new FormControl('', [Validators.required]),
-        name: new FormControl('', [Validators.required]),
         no: new FormControl('', [Validators.required]),
       })
     });
 
-    this.orderForm.get('uid').setValue(this.user);
+    this.orderForm.get('uid').setValue(this.user.id);
+  }
+
+  pickerShow(target) {
+    this.pickerSvc.showDateTime('date').subscribe(res => {
+      this.orderForm.get(target).setValue(res.formatValue);
+      console.log(this.orderForm.value);
+    });
+  }
+
+  paytypeShow() {
+    this.pickerSvc.show([this.payType], '', [0], {cancel: '取消', confirm: '确定'}).subscribe(res => {
+      this.orderForm.get('account.type').setValue(res.items[0].label);
+    });
   }
 
   submit() {
@@ -129,8 +155,16 @@ export class AdminAddComponent implements OnInit {
       return false;
     }
 
+    this.loading = true;
     this.orderSvc.submit(this.orderForm.value).subscribe(res => {
-      console.log(res);
+      this.loading = false;
+      if (res.success) {
+        this.dialogSvc.show({content: res.msg, cancel: '', confirm: '我知道了'}).subscribe(data => {
+          if (data.value) {
+            this.router.navigate(['/admin/list']);
+          }
+        });
+      }
     });
   }
 

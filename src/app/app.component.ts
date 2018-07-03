@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
-import {StorageService} from "./service/base/storage.service";
+import {StorageService} from './service/base/storage.service';
 import {AuthService} from './service/auth.service';
-import {MenuService} from "./service/menu.service";
+import {MenuService} from './service/menu.service';
 import {UserService} from './service/user.service';
 import {OrderService} from './service/order.service';
 
@@ -14,6 +14,7 @@ import {OrderService} from './service/order.service';
 })
 export class AppComponent {
   isLogin = false;
+  userInfo;
   menuOpen;
   orders;
 
@@ -25,6 +26,12 @@ export class AppComponent {
               private orderSvc: OrderService) {
     this.authSvc.getLoginStatus().subscribe(res => {
       this.isLogin = res;
+      if (this.isLogin && !this.userInfo) {
+        this.userSvc.getUser(JSON.parse(this.storageSvc.get('user')).id).subscribe(user => {
+          console.log(user);
+          this.userInfo = user;
+        });
+      }
     });
 
     this.menuSvc.get().subscribe(res => {
@@ -61,7 +68,7 @@ export class AppComponent {
 
   logout() {
     this.storageSvc.clear();
-    this.router.navigate(['/auth/signIn']);
+    window.location.href = '/auth/signIn';
   }
 
   menu() {

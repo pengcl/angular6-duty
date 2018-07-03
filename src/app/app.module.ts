@@ -15,7 +15,7 @@ export function tokenGetter() {
 
 // components
 import {AppComponent} from './app.component';
-import {IndexComponent} from "./index/index.component";
+import {IndexComponent} from './index/index.component';
 import {SignUpComponent} from './auth/sign-up/sign-up.component';
 import {SignInComponent} from './auth/sign-in/sign-in.component';
 import {AdminListComponent} from './admin/list/list.component';

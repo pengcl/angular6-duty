@@ -24,7 +24,6 @@ var OrdersSchema = new mongoose.Schema({
     company: String,
     no: String,
     manuscript: String,
-    contract: String,
     bill: String,
     startAt: {
       type: Date,

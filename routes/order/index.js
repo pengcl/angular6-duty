@@ -42,4 +42,17 @@ router.route('/submit').post(multipartMiddleware, function (req, res, next) {
   });
 });
 
+router.route('/setStatus').post(multipartMiddleware, function (req, res, next) {
+
+  Orders.findByIdAndUpdate(req.body.id, {status: req.body.status}, function (err, order) {
+    if (err) throw err;
+
+    res.send({
+      success: true,
+      msg: '下单成功',
+      data: order
+    });
+  })
+});
+
 module.exports = router;

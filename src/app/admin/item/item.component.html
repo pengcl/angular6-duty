@@ -11,16 +11,11 @@
       <span class="count-list">{{order.contact.name}}</span>
     </h1>
 
-    <div class="nav-group right">
+    <!--<div class="nav-group right">
       <div class="nav-item options-mobile">
         <span class="icon-unlock"></span>
       </div>
-    </div>
-
-    <!--<form class="js-todo-new todo-new input-symbol">
-      <input readonly type="text" placeholder="继续申请"/>
-      <span routerLink="/admin/add" class="icon-add js-todo-add"></span>
-    </form>-->
+    </div>-->
   </nav>
 
   <div class="content-scrollable list-items">
@@ -31,7 +26,7 @@
             <label class="weui-label">公司名称</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" value="{{order.company.name}}">
+            <input class="weui-input" readonly value="{{order.company.name}}">
           </div>
           <div class="weui-cell__ft">
             <i class="weui-icon-warn"></i>
@@ -42,7 +37,7 @@
             <label class="weui-label">地址</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" value="{{order.company.address}}">
+            <input class="weui-input" readonly value="{{order.company.address}}">
           </div>
           <div class="weui-cell__ft">
             <i class="weui-icon-warn"></i>
@@ -167,17 +162,6 @@
         </div>
         <div class="weui-cell">
           <div class="weui-cell__hd">
-            <label class="weui-label">合同</label>
-          </div>
-          <div class="weui-cell__bd">
-            <input class="weui-input" readonly value="{{order.exhibition.contract}}">
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__hd">
             <label class="weui-label">展会时间</label>
           </div>
           <div class="weui-cell__bd">
@@ -202,7 +186,7 @@
           <div class="weui-cell__bd">
             <div class="weui-uploader">
               <div class="weui-uploader__hd">
-                <p class="weui-uploader__title">审稿图(上传图片)</p>
+                <p class="weui-uploader__title">审稿图</p>
               </div>
               <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files">
@@ -217,7 +201,7 @@
           <div class="weui-cell__bd">
             <div class="weui-uploader">
               <div class="weui-uploader__hd">
-                <p class="weui-uploader__title">付款单(上传图片)</p>
+                <p class="weui-uploader__title">付款单</p>
               </div>
               <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files">
@@ -229,7 +213,7 @@
         </div>
       </div>
 
-      <div class="weui-cells__title">账户信息</div>
+      <div class="weui-cells__title">质保金汇款账户信息</div>
       <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
           <div class="weui-cell__hd">
@@ -237,17 +221,6 @@
           </div>
           <div class="weui-cell__bd">
             <input class="weui-input" readonly value="{{order.account.type}}">
-          </div>
-          <div class="weui-cell__ft">
-            <i class="weui-icon-warn"></i>
-          </div>
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__hd">
-            <label class="weui-label">户名</label>
-          </div>
-          <div class="weui-cell__bd">
-            <input class="weui-input" readonly value="{{order.account.name}}">
           </div>
           <div class="weui-cell__ft">
             <i class="weui-icon-warn"></i>
@@ -266,7 +239,10 @@
         </div>
       </div>
 
-
+    <div *ngIf="user.admin" class="btns-group">
+      <a (click)="reject()" class="btn-secondary" type="submit">拒绝</a>
+      <a (click)="resolve()" class="btn-primary" type="submit">通过</a>
+    </div>
   </div>
 </div>
 

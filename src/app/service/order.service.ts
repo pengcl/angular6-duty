@@ -9,7 +9,7 @@ export class OrderService {
   private orders = new Subject<any[]>();
 
   set(orders) {
-    this.orders.next(orders)
+    this.orders.next(orders);
   }
 
   get(): Observable<any[]> {
@@ -37,6 +37,10 @@ export class OrderService {
   submit(body): Observable<any> {
 
     return this.http.post(Config.prefix.api + '/order/submit', body);
+  }
+
+  setStatus(body): Observable<any> {
+    return this.http.post(Config.prefix.api + '/order/setStatus', body);
   }
 
 

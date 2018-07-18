@@ -17,7 +17,8 @@ var OrdersSchema = new mongoose.Schema({
   contact: {
     name: String,
     tel: String,
-    mobile: String
+    mobile: String,
+    email: String
   },
   exhibition: {
     name: String,
@@ -34,6 +35,7 @@ var OrdersSchema = new mongoose.Schema({
       default: Date.now()
     }
   },
+  deposit: {},
   account: {},
   meta: {
     createAt: {

@@ -154,6 +154,17 @@
             <i class="weui-icon-warn"></i>
           </div>
         </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('contact.email').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">邮箱</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="email" placeholder="请输入您的邮件地址">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
       </div>
 
       <div class="weui-cells__title">展会信息</div>
@@ -254,7 +265,44 @@
         </div>
       </div>
 
-      <div class="weui-cells__title">质保金汇款账户信息</div>
+      <div class="weui-cells__title">押金汇款信息</div>
+      <div formGroupName="deposit" class="weui-cells weui-cells_form">
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('deposit.account').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">开户名称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="account" placeholder="请输入账号">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('deposit.bank').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">开户银行</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="bank" placeholder="请输入开户银行">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+        <div class="weui-cell" [ngClass]="{'weui-cell_warn':orderForm.get('deposit.no').invalid && isSubmit}">
+          <div class="weui-cell__hd">
+            <label class="weui-label">银行账号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" formControlName="no" placeholder="请输入银行账号">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">质保金汇款给押无忧的账户信息以便查询</div>
       <div formGroupName="account" class="weui-cells weui-cells_form">
         <div (click)="paytypeShow()" class="weui-cell weui-cell_access" [ngClass]="{'weui-cell_warn':orderForm.get('account.type').invalid && isSubmit}">
           <div class="weui-cell__hd">

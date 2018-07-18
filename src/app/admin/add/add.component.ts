@@ -116,7 +116,8 @@ export class AdminAddComponent implements OnInit {
       contact: new FormGroup({
         name: new FormControl('', [Validators.required]),
         tel: new FormControl('', []),
-        mobile: new FormControl('', [Validators.required])
+        mobile: new FormControl('', [Validators.required]),
+        email: new FormControl('', [])
       }),
       exhibition: new FormGroup({
         name: new FormControl('', [Validators.required]),
@@ -127,9 +128,14 @@ export class AdminAddComponent implements OnInit {
         startAt: new FormControl('', [Validators.required]),
         buildAt: new FormControl('', [Validators.required])
       }),
+      deposit: new FormGroup({
+        account: new FormControl('', [Validators.required]),
+        bank: new FormControl('', [Validators.required]),
+        no: new FormControl('', [Validators.required])
+      }),
       account: new FormGroup({
         type: new FormControl('', [Validators.required]),
-        no: new FormControl('', [Validators.required]),
+        no: new FormControl('', [Validators.required])
       })
     });
 

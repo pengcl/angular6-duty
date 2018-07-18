@@ -31,7 +31,7 @@ router.get('/find', function (req, res, next) {
 router.route('/submit').post(multipartMiddleware, function (req, res, next) {
   const order = new Orders(req.body);
 
-  order.save(function (err, order) { //保存用户信息到数据库
+  order.save(function (err, order) { //保存订单信息到数据库
     if (err) throw err;
 
     res.send({
